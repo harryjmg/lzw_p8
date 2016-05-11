@@ -1,3 +1,9 @@
+/*
+**		COMPRESSEUR LZW
+**		dictionnaire de base : table ascii (256 entrees)
+**		Auteur : Harry Gueguen
+*/
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -21,7 +27,19 @@ static void		reinit_mot(char *mot, char c)
 
 static void		ecrire_code(t_dico *dico, char *mot)
 {
-	printf("> code : %d\n", dico->index - 1);
+	t_dico		*tmp;
+
+	tmp = dico;
+	while (dico)
+	{
+		if (strcmp(dico->mot, mot) == 0)
+		{
+			printf("_code : %d\n", dico->index);
+			return ;
+		}
+		dico = dico->next;
+	}
+	return ;
 }
 
 static int 		est_dans_dico(t_dico *dico, char *mot)
@@ -55,20 +73,22 @@ static void		ajouter_au_dico(t_dico **dico, char *mot, int base)
 		nouvel_element->mot = strdup(mot);
 	nouvel_element->index = 1;
 	nouvel_element->next = NULL;
-	tmp = *dico;
-	if (tmp == NULL)
+
+	if (!(*dico))
 	{
-		tmp = nouvel_element;
+		*dico = nouvel_element;
 		return ;
 	}
+	tmp = *dico;
 	i = 1;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
+	while ((*dico)->next != NULL){
+		*dico = (*dico)->next;
 		i++;
 	}
-	tmp->next = nouvel_element;
-	(*dico)->index = i;
+	nouvel_element->index = i;
+	(*dico)->next = nouvel_element;
+	tmp->index = i;
+	*dico = tmp;
 }
 
 static char 	*char_to_string(char c)
@@ -105,32 +125,36 @@ static char		*mot_et_lettre(char *mot, char lettre)
 	return (nouveau_mot);
 }
 
+static void		show_dico(t_dico *dico)
+{
+	int 		n;
+
+	n = dico->index;
+	printf("dico size : %d\n", n);
+}
+
 int				main(int ac, char **av)
 {
 	t_dico		*dico;
-	char		text[24] = "TOBEORNOTTOBEORTOBEORNOT";
+	char		*text = "TOBEORNOTTOBEORTOBEORNOT";
 	int 		i = 0;
-	char		*mot = "";
+	char		*mot = ""; // Pouvez vous m'expliquer pourquoi mot[] = "" ne fonctionne pas ?
 
 	dico = NULL;
 	init_dico(&dico);
 	while (text[i] != 0)
  	{
  		if (est_dans_dico(dico, mot_et_lettre(mot, text[i])))
- 		{
 			mot = mot_et_lettre(mot, text[i]);
-			printf("=");
- 		}
  		else
  		{
- 			printf("+");
  			ajouter_au_dico(&dico, mot_et_lettre(mot, text[i]), 0);
- 			printf("%s/n", dico->mot);
- 			//ecrire_code(dico, mot);
+ 			ecrire_code(dico, mot);
+ 			free(mot);
  			reinit_mot(mot, text[i]);
  		}
  		i++;
  	}
- 	//ecrire_code(dico, mot);
+ 	ecrire_code(dico, mot);
  	return (0);
 }
