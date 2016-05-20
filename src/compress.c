@@ -13,7 +13,7 @@ static void		write_into_dest(char *file_name, t_charlst *cooked) {
 	FILE 		*dest_ptr;
 	t_charlst 	*tmp;
 
-	dest_ptr = fopen(file_name, "a");
+	dest_ptr = fopen(file_name, "w");
 	if (dest_ptr == NULL) {
 		printf("Error : File cannot be opened\n");
 		return ;
@@ -59,9 +59,6 @@ void			compress(char *src_file_name, char *dest_file_name) {
 		}
 	}
 	add_to_strlst(&binaries, is_in_dico(dico, word), bits_written);
-	print_strlst(binaries);
 	binaries_to_charlst(binaries, &cooked);
-	print_charlst(cooked);
 	write_into_dest(dest_file_name, cooked);
-	printf("\n");
 }

@@ -27,6 +27,6 @@ int					main(int ac, char **av)
 	if (option == 0)
 		compress(av[2], av[3]);
 	else
-		decompress(av[2]);
+		decompress(av[2], av[3]);
 	return (0);
 }

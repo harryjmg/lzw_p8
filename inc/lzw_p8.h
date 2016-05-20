@@ -30,7 +30,7 @@ void					add_to_dico(t_dico **dico, char *mot, int base);
 char					*string_and_char(char *mot, char lettre);
 void					revive_word(char *mot, char c);
 char 					*char_to_string(char c);
-void					decompress(char *code);
+void					decompress(char *src_file_name, char *dest_file_name);
 char 					*get_word_in_dico(t_dico *dico, int c);
 int 					is_entry_in_dico(t_dico *dico, int c);
 void 					add_to_strlst(t_strlst **lst, int word_index, int nb_bit);
