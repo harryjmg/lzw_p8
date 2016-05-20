@@ -1,6 +1,5 @@
 #include "lzw_p8.h"
 
-
 int 			is_entry_in_dico(t_dico *dico, int c) {
 	t_dico 		*tmp;
 

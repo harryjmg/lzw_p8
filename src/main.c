@@ -5,11 +5,10 @@
 **
 */
 
-
 #include "lzw_p8.h"
 
 static int			usage_exit(char *str) {
-	printf("Usage : %s [0:compress, 1:decompress] [text]\n", str);
+	printf("Usage : %s [0:compress, 1:decompress] [data]\n", str);
 	return (1);
 }
 

@@ -14,7 +14,8 @@ W_FLAGS =	-Wall -Wextra
 SRC_DIR =	src/
 INC_DIR =	inc/
 
-FILES =		main.c init.c bits.c compress.c dico.c str_functions.c decompress.c
+FILES =		main.c init.c bits.c compress.c dico.c str_functions.c decompress.c \
+			strlst.c
 
 SRC = 		$(addprefix $(SRC_DIR), $(FILES))
 OBJ = 		$(SRC:.c=.o)
