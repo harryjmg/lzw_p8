@@ -4,21 +4,29 @@ char			*string_and_char(char *mot, char lettre)
 {
 	char		*nouveau_mot;
 
-	nouveau_mot = (char *)malloc(sizeof(char) * (strlen(mot) + 2));
-	nouveau_mot = strcpy(nouveau_mot, mot);
-	nouveau_mot[strlen(mot)] = lettre;
-	nouveau_mot[strlen(mot) + 1] = 0;
+	if (mot) {
+		nouveau_mot = (char *)malloc(sizeof(char) * (strlen(mot) + 2));
+		nouveau_mot = strcpy(nouveau_mot, mot);
+		nouveau_mot[strlen(mot)] = lettre;
+		nouveau_mot[strlen(mot) + 1] = 0;
+		return (nouveau_mot);
+	}
+	nouveau_mot = (char *)malloc(sizeof(char) * 2);
+	nouveau_mot[0] = lettre;
+	nouveau_mot[1] = 0;
 	return (nouveau_mot);
+	
 }
 
-void			revive_word(char *mot, char c)
+char 			*revive_word(char c)
 {
 	char		*nouveau_mot;
 
 	nouveau_mot = (char *)malloc(sizeof(char) * 2);
 	nouveau_mot[0] = c;
 	nouveau_mot[1] = 0;
-	mot = strdup(nouveau_mot);
+	return (nouveau_mot);
+
 }
 
 

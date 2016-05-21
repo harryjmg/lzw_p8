@@ -22,13 +22,13 @@ typedef struct 			s_charlst
 	struct s_charlst	*next;
 }						t_charlst;
 
-int 					need_more_bits(t_dico *dico, int nb_bits);
+int 					need_more_bits(int n_needed, int nb_bits);
 void					compress(char *src_file_name, char *dest_file_name);
 void					init_dico(t_dico **dico);
 int 					is_in_dico(t_dico *dico, char *mot);
 void					add_to_dico(t_dico **dico, char *mot, int base);
 char					*string_and_char(char *mot, char lettre);
-void					revive_word(char *mot, char c);
+char					*revive_word(char c);
 char 					*char_to_string(char c);
 void					decompress(char *src_file_name, char *dest_file_name);
 char 					*get_word_in_dico(t_dico *dico, int c);

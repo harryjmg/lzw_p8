@@ -17,8 +17,11 @@ char 			*get_word_in_dico(t_dico *dico, int c) {
 
 	tmp = dico->next;
 	while (tmp) {
-		if (tmp->index == c)
+		if (tmp->index == c) {
+			//printf("%d %s\n", c, tmp->mot);
 			return (strdup(tmp->mot));
+		}
+			
 		tmp = tmp->next;
 	}
 	return (NULL);
@@ -29,7 +32,7 @@ void			init_dico(t_dico **dico)
 	int 		i;
 
 	i = 0;
-	while (i < 128)
+	while (i < 256)
 	{
 		add_to_dico(dico, char_to_string(i), i);
 		i++;

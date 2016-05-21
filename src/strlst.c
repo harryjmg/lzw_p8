@@ -19,6 +19,18 @@ void			fill_str_with_binary(char **str, int binary, int nb_bit)
 	}
 }
 
+static void		fill_str(char **str, int nb_bit) {
+	int 		i;
+
+	i = 0;
+	while (nb_bit > 0)
+	{
+		(*str)[i] = '1';
+		nb_bit--;
+		i++;
+	}
+}
+
 void 			add_to_strlst(t_strlst **lst, int word_index, int nb_bit)
 {
 	t_strlst	*nouvel_element;
@@ -26,7 +38,10 @@ void 			add_to_strlst(t_strlst **lst, int word_index, int nb_bit)
 
 	nouvel_element = (t_strlst *)malloc(sizeof(t_strlst));
 	nouvel_element->str = (char *)malloc(sizeof(char) * (nb_bit + 1));
-	fill_str_with_binary(&(nouvel_element->str), word_index, nb_bit);
+	if (word_index == -1)
+		fill_str(&(nouvel_element->str), nb_bit);
+	else
+		fill_str_with_binary(&(nouvel_element->str), word_index, nb_bit);
 	nouvel_element->next = NULL;
 	if (!(*lst))
 	{

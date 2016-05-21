@@ -66,4 +66,13 @@ void			binaries_to_charlst(t_strlst *binaries, t_charlst **cooked) {
 		}
 		tmp_binaries = tmp_binaries->next;
 	}
+	if (filled < 8) {
+		while (filled < 8)
+		{
+			c = (c << 1);
+			filled++;
+		}
+		add_to_charlst(cooked, c);
+	}
+	
 }
