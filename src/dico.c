@@ -32,7 +32,7 @@ void			init_dico(t_dico **dico)
 	int 		i;
 
 	i = 0;
-	while (i < 256)
+	while (i < 255)
 	{
 		add_to_dico(dico, char_to_string(i), i);
 		i++;

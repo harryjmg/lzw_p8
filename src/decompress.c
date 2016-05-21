@@ -92,7 +92,6 @@ void			decompress(char *src_file_name, char *dest_file_name) {
 		}
 		
 		if (c >= max_val(bits_to_read) - 1) {
-			//printf("HERE");
 			bits_to_read++;
 		}
 		
