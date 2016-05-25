@@ -29,7 +29,6 @@ char 			*revive_word(char c)
 
 }
 
-
 char 			*char_to_string(char c)
 {
 	char 		*string;

@@ -36,7 +36,7 @@ void			compress(char *src_file_name, char *dest_file_name) {
 	init_dico(&dico);
 	bits_written = 8;
 	word = NULL;
-	while (fread(&text, 1, 1, src_file_ptr) > 0) {	
+	while (fread(&text, 1, 1, src_file_ptr) > 0) {
 		if (is_in_dico(dico, string_and_char(word, text[0])))
 			word = string_and_char(word, text[0]);
 		else {
